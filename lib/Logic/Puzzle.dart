@@ -12,8 +12,6 @@ import 'package:flutter_eight/Dialogs/StatsDialog.dart';
 import 'package:flutter_eight/Logic/PuzzleFunctions.dart';
 import 'package:flutter_eight/Logic/StatsLogic.dart';
 import 'package:flutter_eight/Widgets/Tile.dart';
-import 'package:tools/BasicExtensions.dart';
-import 'package:tools/RandomBag.dart';
 import 'package:tools/SaveLoadManager.dart';
 import 'package:tools/Startup.dart';
 import 'package:tools/TestUtils.dart';
@@ -34,8 +32,7 @@ class Puzzle {
 	Puzzle({required this.day, required this.freePlay}) {
 		numMoves = 0;
 		numChecks = 0;
-		lookupListEmojis.clear();
-		lookupListRunes.clear();
+		lookupValues = <int>[0, 0, 0, 0, 0, 0, 0, 0, 0];
 		shareInfo.clear();
 
 		final bool alreadyWon = startGame();
@@ -112,8 +109,7 @@ class Puzzle {
 			puzzlePieces: List<int?>.from(data[Data.PUZZLE_PIECES.index]),
 			solution: List<int?>.from(data[Data.SOLUTION.index]),
 			possiblePositions: possiblePositions,
-			lookupListRunes: List<String>.from(data[Data.LOOKUP_RUNES.index]),
-			lookupListEmojis: List<String>.from(data[Data.LOOKUP_EMOJIS.index]),
+			lookupValues: List<int>.from(data[Data.LOOKUP_VALUES.index]),
 			isBoosted: (data[Data.MAX_CHECKS_DEPRECATED.index] != null && data[Data.MAX_CHECKS_DEPRECATED.index] >= 6) || data[Data.IS_BOOSTED.index] == true,
 			shareInfo: StringBuffer(data[Data.SHARE_INFO.index]),
 		);
@@ -127,8 +123,7 @@ class Puzzle {
 		required this.puzzlePieces,
 		required this.solution,
 		required this.possiblePositions,
-		required this.lookupListRunes,
-		required this.lookupListEmojis,
+		required this.lookupValues,
 		required this.shareInfo,
 		required this.isBoosted,
 	});
@@ -138,8 +133,7 @@ class Puzzle {
 	Map<int, Set<int>> possiblePositions = <int, Set<int>>{};
 	int numMoves = 0;
 	int numChecks = 0;
-	List<String> lookupListRunes = <String>[];
-	List<String> lookupListEmojis = <String>[];
+	List<int> lookupValues = <int>[];
 	bool freePlay;
 	bool isBoosted = false;
 
@@ -279,68 +273,11 @@ class Puzzle {
 		}
 
 		tilesStateGroup.notifyAll(data);
-
-		void writeEmojiToSolution(int index, StringBuffer buffer, Map<int, DIRECTION_HINT> data, [bool rowEndPiece = false]) {
-			final int? value = puzzlePieces[index];
-			if (value == null) {
-				if (rowEndPiece) {
-					return;
-				} else {
-					buffer.write("🟥"); // Red
-					return;
-				}
-			}
-			switch (data[value]) {
-				case DIRECTION_HINT.ROW_OR_COLUMN:
-					buffer.write("🟨"); // Yellow
-					break;
-				case DIRECTION_HINT.BOTH:
-					buffer.write("🟩"); // Green
-					break;
-				case null:
-					buffer.write("⬛"); // Black
-					break;
-			}
-		}
-
-		shareInfo.write("\n\n");
-
-		writeEmojiToSolution(0, shareInfo, data);
-		writeEmojiToSolution(1, shareInfo, data);
-		writeEmojiToSolution(2, shareInfo, data);
-		writeEmojiToSolution(3, shareInfo, data, true);
-		shareInfo.write("\n");
-		writeEmojiToSolution(4, shareInfo, data);
-		writeEmojiToSolution(5, shareInfo, data);
-		writeEmojiToSolution(6, shareInfo, data);
-		writeEmojiToSolution(7, shareInfo, data, true);
-		shareInfo.write("\n");
-		writeEmojiToSolution(8, shareInfo, data);
-		writeEmojiToSolution(9, shareInfo, data);
-		writeEmojiToSolution(10, shareInfo, data);
-		writeEmojiToSolution(11, shareInfo, data, true);
-		shareInfo.write("\n");
-		writeEmojiToSolution(12, shareInfo, data);
-		writeEmojiToSolution(13, shareInfo, data);
-		writeEmojiToSolution(14, shareInfo, data);
-		writeEmojiToSolution(15, shareInfo, data, true);
 	}
 
 	String getDisplayString(int index) {
 
-		if (thirstyEmojis) {
-			if (lookupListEmojis.isEmpty) {
-				lookupListEmojis = <String>["🍆", "🍌", "🍒", "🍑", "♋", "😉", "🤤", "💋", "👅", "😈", "😏", "👌", "🤫", "😇", "☝", "💦", "👉"].scramble(Random());
-			}
-			assert(lookupListEmojis.length >= 15);
-			return lookupListEmojis[index];
-		} else {
-			if (lookupListRunes.isEmpty) {
-				lookupListRunes = RandomBag<String>.fromList(<String>["ᚠ", "ᚢ", "ᚦ", "ᚨ", "ᚱ", "ᛋ", "ᚷ", "ᚻ", "ᚾ", "ᛒ", "ᛏ", "ᛇ", "ᛈ", "ᛉ", "ᛗ", "ᛊ", "ᛝ", "ᛟ", "ᛞ"]).getListOfRandomItems(15, Random());
-			}
-			assert(lookupListRunes.length >= 15);
-			return lookupListRunes[index];
-		}
+		return lookupValues[index].toString();
 		// Note: have to run in web renderer (flutter run -d chrome --web-renderer html) otherwise characters can't be found
 		//const List<String> lookupList = <String>["ᚠ", "ᚢ", "ᚦ", "ᚨ", "ᚱ", "ᛋ", "ᚷ", "ᚹ", "ᚻ", "ᚾ", "ᛒ", "ᛏ", "ᛇ", "ᛈ", "ᛉ"];
 	}
@@ -368,8 +305,7 @@ class Puzzle {
 			Data.POSSIBLE_POSITIONS.index : mapSetToMapList(possiblePositions),
 			Data.NUM_MOVES.index : numMoves,
 			Data.NUM_CHECKS.index : numChecks,
-			Data.LOOKUP_RUNES.index : lookupListRunes,
-			Data.LOOKUP_EMOJIS.index : lookupListEmojis,
+			Data.LOOKUP_VALUES.index : lookupValues,
 			Data.SHARE_INFO.index : shareInfo.toString(),
 			Data.DAY.index : day,
 			Data.IS_BOOSTED.index : isBoosted,
@@ -421,8 +357,7 @@ enum Data {
 	POSSIBLE_POSITIONS,
 	NUM_MOVES,
 	NUM_CHECKS,
-	LOOKUP_RUNES,
-	LOOKUP_EMOJIS,
+	LOOKUP_VALUES,
 	MAX_CHECKS_DEPRECATED,
 	SHARE_INFO,
 	DAY,
