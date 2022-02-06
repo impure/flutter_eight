@@ -35,14 +35,18 @@ class InstructionsDialogState extends State<InstructionsDialog> {
 			const TextSpan(
 				text: "Flutter 8 is a cross between a slide puzzle and a magic square puzzle. Your goal is to arrange the tiles in such a way that it forms a magic square. A magic square is a square where each row/column/diagonal of 3 tiles sum up to the same number. Note that every single possible answer has the empty space in the top middle like this:\n\n"),
 		);
+		// Image of solution
 		spans.add(
 			const TextSpan(
-				text: "This may sound difficult to solve but it is fairly easy once you know how. To do so iterate through the possible 'magic sums' (the numbers the columns/rows/diagonal of 3 tiles sums up to). The magic must be greater than the highest tile value and lower than the highest and second highest tile values added together. As the empty space will always be in the top center we know that there must be at least 2 ways to sum up to the magic sum with only 2 pieces. This will eliminate many possible numbers and reduce the possible combinations significantly.\n\n"),
+				text: "This may sound difficult to solve but it is fairly easy once you know how. First you must calculate the 'magic sum' (the numbers the columns/rows/diagonal of 3 tiles sums up to). You could do this by brute forcing every single value. We know the magic sum must be greater than the highest tile value and lower than the highest and second highest tile values added together. Although a much easier way of doing this is adding up all the numbers and dividing by 3.\n\n"
+						"Next, as we know the empty space will always be in the top center we know that there must be at least 2 ways to sum up to the magic sum with only 2 pieces. We then just need to brute force which pieces go in these spots."),
 		);
+		// Image of two spots highlighted
 		spans.add(
 			const TextSpan(
-				text: "Then it's a simple task of brute forcing every single possible combination until you find the solution. Also note you may have to flip your solution in the Y axis in order to actually solve it in the slide puzzle. And if you don't know how to solve a slide puzzle "),
+				text: "Also note you may have to flip your solution in the Y axis in order to actually solve the slide puzzle. And if you don't know how to solve a slide puzzle "),
 		);
+		// Image of puzzle in backwards
 		spans.add(
 			TextSpan(
 				text: "here's",
