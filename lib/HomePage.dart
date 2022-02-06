@@ -9,6 +9,7 @@ import 'package:flutter_eight/Dialogs/SettingsDialog.dart';
 import 'package:flutter_eight/Dialogs/StatsDialog.dart';
 import 'package:flutter_eight/Widgets/BoardDisplay.dart';
 import 'package:flutter_eight/Widgets/BottomButton.dart';
+import 'package:flutter_eight/Widgets/Counter.dart';
 import 'package:flutter_eight/Widgets/HighlightBackground.dart';
 import 'package:flutter_eight/Widgets/StatsDisplay.dart';
 import 'package:tools/BasicExtensions.dart';
@@ -148,25 +149,21 @@ class HomePageState extends State<HomePage> {
 						),
 						Column(
 							children: <Widget>[
-								Container(
-									height: gridSize / 3,
-									width: gridSize / 3,
-									color: Colors.green,
+								Counter(
+									gridSize / 3,
+									() => (puzzle.puzzlePieces[6] ?? 0) + (puzzle.puzzlePieces[4] ?? 0) + (puzzle.puzzlePieces[2] ?? 0),
 								),
-								Container(
-									height: gridSize / 3,
-									width: gridSize / 3,
-									color: Colors.orange,
+								Counter(
+									gridSize / 3,
+									() => (puzzle.puzzlePieces[0] ?? 0) + (puzzle.puzzlePieces[1] ?? 0) + (puzzle.puzzlePieces[2] ?? 0),
 								),
-								Container(
-									height: gridSize / 3,
-									width: gridSize / 3,
-									color: Colors.purple,
+								Counter(
+									gridSize / 3,
+									() => (puzzle.puzzlePieces[3] ?? 0) + (puzzle.puzzlePieces[4] ?? 0) + (puzzle.puzzlePieces[5] ?? 0),
 								),
-								Container(
-									height: gridSize / 3,
-									width: gridSize / 3,
-									color: Colors.teal,
+								Counter(
+									gridSize / 3,
+									() => (puzzle.puzzlePieces[6] ?? 0) + (puzzle.puzzlePieces[7] ?? 0) + (puzzle.puzzlePieces[8] ?? 0),
 								),
 							],
 						),
@@ -174,25 +171,21 @@ class HomePageState extends State<HomePage> {
 				),
 				Row(
 					children: <Widget>[
-						Container(
-							height: gridSize / 3,
-							width: gridSize / 3,
-							color: Colors.green,
+						Counter(
+							gridSize / 3,
+							() => (puzzle.puzzlePieces[0] ?? 0) + (puzzle.puzzlePieces[3] ?? 0) + (puzzle.puzzlePieces[6] ?? 0),
 						),
-						Container(
-							height: gridSize / 3,
-							width: gridSize / 3,
-							color: Colors.orange,
+						Counter(
+							gridSize / 3,
+							() => (puzzle.puzzlePieces[1] ?? 0) + (puzzle.puzzlePieces[4] ?? 0) + (puzzle.puzzlePieces[7] ?? 0),
 						),
-						Container(
-							height: gridSize / 3,
-							width: gridSize / 3,
-							color: Colors.purple,
+						Counter(
+							gridSize / 3,
+							() => (puzzle.puzzlePieces[2] ?? 0) + (puzzle.puzzlePieces[5] ?? 0) + (puzzle.puzzlePieces[8] ?? 0),
 						),
-						Container(
-							height: gridSize / 3,
-							width: gridSize / 3,
-							color: Colors.teal,
+						Counter(
+							gridSize / 3,
+							() => (puzzle.puzzlePieces[0] ?? 0) + (puzzle.puzzlePieces[4] ?? 0) + (puzzle.puzzlePieces[8] ?? 0),
 						),
 					],
 				),
