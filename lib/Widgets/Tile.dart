@@ -99,7 +99,7 @@ class TileState extends SyncState<Map<int, DIRECTION_HINT>, Tile> with SingleTic
 										child: Padding(
 											padding: EdgeInsets.symmetric(vertical: widget.width * 0.2, horizontal: widget.height * 0.2),
 											child: AutoSizeText(
-												puzzle.getValue(widget.num).toString(),
+												widget.num.toString(),
 												/*style: TextStyle(
 														color: Colors.white,
 														fontSize: 50,
