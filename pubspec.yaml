@@ -30,12 +30,16 @@ dependencies:
   flutter:
     sdk: flutter
   auto_size_text: ^3.0.0
-  #binary_codec: ^2.0.3
+  binary_codec: ^2.0.3
   #firebase_analytics: ^9.0.0
   dart_lints:
     git:
       url: https://gitlab.com/azuredown/dart-lints.git
       ref: main
+  tools:
+    git:
+      url: https://gitlab.com/azuredown/flutter-tools.git
+      ref: master
   state_groups: ^0.1.0
   tuple: any
   fluttertoast: ^8.0.0
