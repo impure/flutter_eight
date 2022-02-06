@@ -83,7 +83,7 @@ class LoadingPageState extends State<LoadingPage> {
 				} else {
 					puzzle.checkScheduledSave(now);
 				}
-			});
+			}, duration: const Duration(seconds: 1));
 
 			WidgetsBinding.instance!.addPostFrameCallback((_) {
 				Navigator.pushReplacement(
