@@ -78,6 +78,8 @@ class Puzzle {
 		final List<int?> possibleSolution = magicSquares[rng.nextInt(magicSquares.length)];
 		puzzlePieces = possibleSolution.toList();
 
+		//print("The magic sum is: ${(possibleSolution[0] ?? 0) + (possibleSolution[1] ?? 0) + (possibleSolution[2] ?? 0)}");
+
 		// Get end state
 		puzzlePieces = simulateRandomSwaps(puzzlePieces, 100, rng, keepGoing: (List<int?> currentTiles) {
 			for (int i = 0; i < currentTiles.length; i++) {

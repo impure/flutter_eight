@@ -31,32 +31,21 @@ class InstructionsDialogState extends State<InstructionsDialog> {
 
 		final List<InlineSpan> spans = <InlineSpan>[];
 
-		if (kIsWeb) {
-			spans.add(
-				const TextSpan(text: "Note: The following does not work on the web version: extending guesses to 6 and free play. It is recommended to play on the Android version to get all available features here: "),
-			);
-			spans.add(
-				TextSpan(
-					text: "here.",
-					style: const TextStyle(
-						decoration: TextDecoration.underline,
-						decorationThickness: 2,
-					),
-					recognizer: TapGestureRecognizer()..onTap = () => launch("https://play.google.com/store/apps/details?id=com.amorfatite.flurdle"),
-				),
-			);
-			spans.add(
-				const TextSpan(text: "\n\n"),
-			);
-		}
-
 		spans.add(
 			const TextSpan(
-				text: "Flurdle is a slide puzzle game with a unique twist: you don't know what order the tiles go in.\n\nIn order to see if your guess is right or not you have to press the check button below. This will turn tiles in the correct location green and tiles in the correct row/column yellow. But be warned: you can only press the check button 3 times (at least at first) so make them count.\n\nNote that once you press the check button you do not have to memorize the results from the check. They are automatically saved and you can view them by pressing and holding on the tiles.\n\nOne more thing: if you don't know how to solve a 4x4 slide puzzle it's very simple once you know how. You solve the topmost row, then the second topmost row, and then the left most column, and then the second leftmost column. "),
+				text: "Flutter 8 is a cross between a slide puzzle and a magic square puzzle. Your goal is to arrange the tiles in such a way that it forms a magic square. A magic square is a square where each row/column/diagonal of 3 tiles sum up to the same number. Note that every single possible answer has the empty space in the top middle like this:\n\n"),
+		);
+		spans.add(
+			const TextSpan(
+				text: "This may sound difficult to solve but it is fairly easy once you know how. To do so iterate through the possible 'magic sums' (the numbers the columns/rows/diagonal of 3 tiles sums up to). The magic must be greater than the highest tile value and lower than the highest and second highest tile values added together. As the empty space will always be in the top center we know that there must be at least 2 ways to sum up to the magic sum with only 2 pieces. This will eliminate many possible numbers and reduce the possible combinations significantly.\n\n"),
+		);
+		spans.add(
+			const TextSpan(
+				text: "Then it's a simple task of brute forcing every single possible combination until you find the solution. Also note you may have to flip your solution in the Y axis in order to actually solve it in the slide puzzle. And if you don't know how to solve a slide puzzle "),
 		);
 		spans.add(
 			TextSpan(
-				text: "Here's",
+				text: "here's",
 				style: const TextStyle(
 					decoration: TextDecoration.underline,
 					decorationThickness: 2,

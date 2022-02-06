@@ -151,7 +151,7 @@ class HomePageState extends State<HomePage> {
 			mainAxisAlignment: MainAxisAlignment.start,
 			mainAxisSize: MainAxisSize.min,
 			children: <Widget>[
-				const Text("FLURDLE", style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, letterSpacing: 2)),
+				const Text("FLUTTER 8", style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, letterSpacing: 2)),
 				SizedBox(height: paddingValue),
 				const StatsDisplay(),
 				SizedBox(height: paddingValue),
