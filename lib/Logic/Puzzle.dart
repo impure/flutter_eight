@@ -10,6 +10,7 @@ import 'package:flutter_eight/Dialogs/SettingsDialog.dart';
 import 'package:flutter_eight/Dialogs/StatsDialog.dart';
 import 'package:flutter_eight/Logic/PuzzleFunctions.dart';
 import 'package:flutter_eight/Logic/StatsLogic.dart';
+import 'package:flutter_eight/Widgets/Counter.dart';
 import 'package:flutter_eight/Widgets/Tile.dart';
 import 'package:tools/SaveLoadManager.dart';
 import 'package:tools/Startup.dart';
@@ -90,9 +91,9 @@ class Puzzle {
 			return false;
 		});
 
-
 		// Also make sure no tiles are currently coloured
 		tilesStateGroup.notifyAll(null);
+		counterGroup.notifyAll(null);
 	}
 
 	factory Puzzle.fromMap(Map<dynamic, dynamic> data) {
