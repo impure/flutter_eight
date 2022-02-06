@@ -91,31 +91,11 @@ class Puzzle {
 			return false;
 		});
 
-		final List<int> possibleLocationsSinglePiece = <int>[];
-		for (int i = 0; i < puzzlePieces.length - 1; i++) {
-			possibleLocationsSinglePiece.add(i);
-		}
-		if (randomHole) {
-			possibleLocationsSinglePiece.add(puzzlePieces.length - 1);
-		}
-
-		for (int i = 0; i < puzzlePieces.length; i++) {
-			if (puzzlePieces[i] != null) {
-				possiblePositions[puzzlePieces[i]!] = possibleLocationsSinglePiece.toSet();
-			}
-		}
-
 		// Also make sure no tiles are currently coloured
 		tilesStateGroup.notifyAll(null);
 	}
 
 	factory Puzzle.fromMap(Map<dynamic, dynamic> data) {
-
-		final Map<int, Set<int>> possiblePositions = <int, Set<int>>{};
-		final Map<int, dynamic> positionData = Map<int, dynamic>.from(data[Data.POSSIBLE_POSITIONS.index]);
-		for (final MapEntry<int, dynamic> position in positionData.entries) {
-			possiblePositions[position.key] = Set<int>.from(position.value);
-		}
 
 		return Puzzle._(
 			day: data[Data.DAY.index],
@@ -123,7 +103,6 @@ class Puzzle {
 			numMoves: data[Data.NUM_MOVES.index],
 			numChecks: data[Data.NUM_CHECKS.index],
 			puzzlePieces: List<int?>.from(data[Data.PUZZLE_PIECES.index]),
-			possiblePositions: possiblePositions,
 			lookupValues: List<int>.from(data[Data.LOOKUP_VALUES.index]),
 			isBoosted: (data[Data.MAX_CHECKS_DEPRECATED.index] != null && data[Data.MAX_CHECKS_DEPRECATED.index] >= 6) || data[Data.IS_BOOSTED.index] == true,
 			shareInfo: StringBuffer(data[Data.SHARE_INFO.index]),
@@ -136,14 +115,12 @@ class Puzzle {
 		required this.numMoves,
 		required this.numChecks,
 		required this.puzzlePieces,
-		required this.possiblePositions,
 		required this.lookupValues,
 		required this.shareInfo,
 		required this.isBoosted,
 	});
 
 	List<int?> puzzlePieces = <int?>[];
-	Map<int, Set<int>> possiblePositions = <int, Set<int>>{};
 	int numMoves = 0;
 	int numChecks = 0;
 	List<int> lookupValues = <int>[];
@@ -241,7 +218,6 @@ class Puzzle {
 	Map<int, dynamic> toMap() {
 		return <int, dynamic> {
 			Data.PUZZLE_PIECES.index : puzzlePieces,
-			Data.POSSIBLE_POSITIONS.index : mapSetToMapList(possiblePositions),
 			Data.NUM_MOVES.index : numMoves,
 			Data.NUM_CHECKS.index : numChecks,
 			Data.LOOKUP_VALUES.index : lookupValues,
@@ -292,7 +268,6 @@ Map<int, List<int>> mapSetToMapList(Map<int, Set<int>> data) {
 
 enum Data {
 	PUZZLE_PIECES,
-	POSSIBLE_POSITIONS,
 	NUM_MOVES,
 	NUM_CHECKS,
 	LOOKUP_VALUES,

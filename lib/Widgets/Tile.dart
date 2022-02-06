@@ -41,8 +41,6 @@ class TileState extends SyncState<Map<int, DIRECTION_HINT>, Tile> with SingleTic
 	late Animation<double> _animation;
 	DIRECTION_HINT? hintInfo;
 
-	bool get positionKnown => puzzle.possiblePositions[widget.num]?.length == 1;
-
 	@override
 	void update(Map<int, DIRECTION_HINT>? message) {
 		hintInfo = message?[widget.num];
@@ -85,31 +83,24 @@ class TileState extends SyncState<Map<int, DIRECTION_HINT>, Tile> with SingleTic
 					child: SizedBox(
 						height: widget.height,
 						width: widget.width,
-						child: MouseRegion(
-							onEnter: (_) {
-								highlightBackgroundGroup.notifyAll(puzzle.possiblePositions[widget.num]);
-							},
-							onExit: (_) {
-								highlightBackgroundGroup.notifyAll(null);
-							},
-							child: Material(
-								elevation: 3,
-								color: hintInfo == DIRECTION_HINT.BOTH
+						child: Material(
+							elevation: 3,
+							color: hintInfo == DIRECTION_HINT.BOTH
 									?	greenColourBackground
 									: (hintInfo == DIRECTION_HINT.ROW_OR_COLUMN
-										? yellowTileBackground
-										: greyTileBackground),
-								child: InkWell(
-									hoverColor: Colors.black12,
-									child: SizedBox(
-										height: widget.height,
-										width: widget.width,
-										child: Center(
-											child: Padding(
-												padding: EdgeInsets.symmetric(vertical: widget.width * 0.2, horizontal: widget.height * 0.2),
-												child: AutoSizeText(
-													puzzle.getValue(widget.num).toString(),
-													/*style: TextStyle(
+									? yellowTileBackground
+									: greyTileBackground),
+							child: InkWell(
+								hoverColor: Colors.black12,
+								child: SizedBox(
+									height: widget.height,
+									width: widget.width,
+									child: Center(
+										child: Padding(
+											padding: EdgeInsets.symmetric(vertical: widget.width * 0.2, horizontal: widget.height * 0.2),
+											child: AutoSizeText(
+												puzzle.getValue(widget.num).toString(),
+												/*style: TextStyle(
 														color: Colors.white,
 														fontSize: 50,
 														fontWeight: FontWeight.w900,
@@ -120,35 +111,24 @@ class TileState extends SyncState<Map<int, DIRECTION_HINT>, Tile> with SingleTic
 															),
 														]
 													),*/
-												),
 											),
 										),
 									),
-									onTap: () {
-										if (puzzle.solved) {
-											showDialog(
-												context: context,
-												builder: (_) {
-													return const StatsDialog();
-												}
-											);
-											return;
-										}
-										highlightBackgroundGroup.notifyAll(null);
-										puzzle.trySwapHoleWith(widget.num);
-										puzzle.checkWin(context);
-									},
-									onTapDown: (_) {
-										if (!puzzle.solved) {
-											highlightBackgroundGroup.notifyAll(puzzle.possiblePositions[widget.num]);
-										} else {
-											highlightBackgroundGroup.notifyAll(null);
-										}
-									},
-									onTapCancel: () {
-										highlightBackgroundGroup.notifyAll(null);
-									},
 								),
+								onTap: () {
+									if (puzzle.solved) {
+										showDialog(
+											context: context,
+											builder: (_) {
+												return const StatsDialog();
+											}
+										);
+										return;
+									}
+									highlightBackgroundGroup.notifyAll(null);
+									puzzle.trySwapHoleWith(widget.num);
+									puzzle.checkWin(context);
+								},
 							),
 						),
 					),
