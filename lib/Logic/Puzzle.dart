@@ -101,7 +101,6 @@ class Puzzle {
 			numMoves: data[Data.NUM_MOVES.index],
 			numChecks: data[Data.NUM_CHECKS.index],
 			puzzlePieces: List<int?>.from(data[Data.PUZZLE_PIECES.index]),
-			lookupValues: List<int>.from(data[Data.LOOKUP_VALUES.index]),
 			isBoosted: (data[Data.MAX_CHECKS_DEPRECATED.index] != null && data[Data.MAX_CHECKS_DEPRECATED.index] >= 6) || data[Data.IS_BOOSTED.index] == true,
 			shareInfo: StringBuffer(data[Data.SHARE_INFO.index]),
 		);
@@ -113,7 +112,6 @@ class Puzzle {
 		required this.numMoves,
 		required this.numChecks,
 		required this.puzzlePieces,
-		required this.lookupValues,
 		required this.shareInfo,
 		required this.isBoosted,
 	});
@@ -121,7 +119,6 @@ class Puzzle {
 	List<int?> puzzlePieces = <int?>[];
 	int numMoves = 0;
 	int numChecks = 0;
-	List<int> lookupValues = <int>[];
 	bool freePlay;
 	bool isBoosted = false;
 
@@ -214,7 +211,6 @@ class Puzzle {
 			Data.PUZZLE_PIECES.index : puzzlePieces,
 			Data.NUM_MOVES.index : numMoves,
 			Data.NUM_CHECKS.index : numChecks,
-			Data.LOOKUP_VALUES.index : lookupValues,
 			Data.SHARE_INFO.index : shareInfo.toString(),
 			Data.DAY.index : day,
 			Data.IS_BOOSTED.index : isBoosted,
@@ -264,7 +260,6 @@ enum Data {
 	PUZZLE_PIECES,
 	NUM_MOVES,
 	NUM_CHECKS,
-	LOOKUP_VALUES,
 	MAX_CHECKS_DEPRECATED,
 	SHARE_INFO,
 	DAY,
