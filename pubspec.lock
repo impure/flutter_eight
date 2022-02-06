@@ -679,7 +679,7 @@ packages:
     description:
       path: "."
       ref: master
-      resolved-ref: "1dc1dcd88c6340e314bddd76a9a8910498b5b668"
+      resolved-ref: "15f5b87077c4a99873e6d15cc9bd97908a25de9a"
       url: "https://gitlab.com/azuredown/flutter-tools.git"
     source: git
     version: "0.0.1"
