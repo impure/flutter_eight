@@ -100,17 +100,17 @@ class TileState extends SyncState<Map<int, DIRECTION_HINT>, Tile> with SingleTic
 											padding: EdgeInsets.symmetric(vertical: widget.width * 0.2, horizontal: widget.height * 0.2),
 											child: AutoSizeText(
 												widget.num.toString(),
-												/*style: TextStyle(
-														color: Colors.white,
-														fontSize: 50,
-														fontWeight: FontWeight.w900,
-														shadows: <Shadow>[
-															Shadow(
-																color: shadowColour,
-																blurRadius: 10,
-															),
-														]
-													),*/
+												style: TextStyle(
+													//color: Colors.white,
+													fontSize: 50,
+													fontWeight: FontWeight.w900,
+													//shadows: <Shadow>[
+													//	Shadow(
+													//		color: shadowColour,
+													//		blurRadius: 10,
+													//	),
+													//],
+												),
 											),
 										),
 									),
