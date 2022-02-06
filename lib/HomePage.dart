@@ -123,26 +123,80 @@ class HomePageState extends State<HomePage> {
 	}
 
 	Widget gameBoard(double gridSize) {
-		return Container(
-			decoration: BoxDecoration(
-				color: Theme.of(context).canvasColor.withOpacity(0.9),
-				boxShadow: const <BoxShadow>[
-					BoxShadow(
-						color: Colors.black54,
-						blurRadius: 10,
-					)
-				],
-				border: Border.all(
-					color: greyTileBackground,
-					width: 7,
+		return Column(
+			crossAxisAlignment: CrossAxisAlignment.start,
+			children: <Widget>[
+				Row(
+					crossAxisAlignment: CrossAxisAlignment.end,
+					children: <Widget>[
+						Container(
+							decoration: BoxDecoration(
+								color: Theme.of(context).canvasColor.withOpacity(0.9),
+								boxShadow: const <BoxShadow>[
+									BoxShadow(
+										color: Colors.black54,
+										blurRadius: 10,
+									)
+								],
+							),
+							child: Stack(
+								children: <Widget>[
+									HighlightBackground(gridSize),
+									BoardDisplay(gridSize),
+								],
+							),
+						),
+						Column(
+							children: <Widget>[
+								Container(
+									height: gridSize / 3,
+									width: gridSize / 3,
+									color: Colors.green,
+								),
+								Container(
+									height: gridSize / 3,
+									width: gridSize / 3,
+									color: Colors.orange,
+								),
+								Container(
+									height: gridSize / 3,
+									width: gridSize / 3,
+									color: Colors.purple,
+								),
+								Container(
+									height: gridSize / 3,
+									width: gridSize / 3,
+									color: Colors.teal,
+								),
+							],
+						),
+					],
 				),
-			),
-			child: Stack(
-				children: <Widget>[
-					HighlightBackground(gridSize),
-					BoardDisplay(gridSize),
-				],
-			),
+				Row(
+					children: <Widget>[
+						Container(
+							height: gridSize / 3,
+							width: gridSize / 3,
+							color: Colors.green,
+						),
+						Container(
+							height: gridSize / 3,
+							width: gridSize / 3,
+							color: Colors.orange,
+						),
+						Container(
+							height: gridSize / 3,
+							width: gridSize / 3,
+							color: Colors.purple,
+						),
+						Container(
+							height: gridSize / 3,
+							width: gridSize / 3,
+							color: Colors.teal,
+						),
+					],
+				),
+			],
 		);
 	}
 
