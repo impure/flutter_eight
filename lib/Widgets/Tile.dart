@@ -42,7 +42,6 @@ class TileState extends SyncState<Map<int, DIRECTION_HINT>, Tile> with SingleTic
 	DIRECTION_HINT? hintInfo;
 
 	bool get positionKnown => puzzle.possiblePositions[widget.num]?.length == 1;
-	bool get inPosition => puzzle.solution.indexOf(widget.num) == puzzle.puzzlePieces.indexOf(widget.num);
 
 	@override
 	void update(Map<int, DIRECTION_HINT>? message) {
@@ -78,17 +77,6 @@ class TileState extends SyncState<Map<int, DIRECTION_HINT>, Tile> with SingleTic
 	@override
 	Widget build(BuildContext context) {
 
-		final Color textColour = !positionKnown
-			? Colors.white
-			: (inPosition
-				? greenSymbolHighlight
-				: blueSymbolHighlight);
-		final Color shadowColour = (!positionKnown || thirstyEmojis)
-			? Colors.transparent
-			: (inPosition
-				? greenSymbolHighlight
-				: blueSymbolHighlight);
-
 		return AnimatedBuilder(
 			animation: _controller,
 			builder: (_, __) {
@@ -121,8 +109,8 @@ class TileState extends SyncState<Map<int, DIRECTION_HINT>, Tile> with SingleTic
 												padding: EdgeInsets.symmetric(vertical: widget.width * 0.2, horizontal: widget.height * 0.2),
 												child: AutoSizeText(
 													puzzle.getValue(widget.num).toString(),
-													style: TextStyle(
-														color: textColour,
+													/*style: TextStyle(
+														color: Colors.white,
 														fontSize: 50,
 														fontWeight: FontWeight.w900,
 														shadows: <Shadow>[
@@ -131,7 +119,7 @@ class TileState extends SyncState<Map<int, DIRECTION_HINT>, Tile> with SingleTic
 																blurRadius: 10,
 															),
 														]
-													),
+													),*/
 												),
 											),
 										),

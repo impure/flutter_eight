@@ -60,7 +60,6 @@ class Puzzle {
 	Puzzle({required this.day, required this.freePlay}) {
 		numMoves = 0;
 		numChecks = 0;
-		lookupValues = <int>[0, 0, 0, 0, 0, 0, 0, 0, 0];
 		shareInfo.clear();
 
 		final bool alreadyWon = startGame();
@@ -81,8 +80,9 @@ class Puzzle {
 			puzzlePieces[i] = i;
 		}
 
+		lookupValues = <int>[0, 0, 0, 0, 0, 0, 0, 0];
 		// Get end state
-		solution = simulateRandomSwaps(puzzlePieces, 500, rng, keepGoing: (List<int?> currentTiles) {
+		List<int?> solution = simulateRandomSwaps(puzzlePieces, 500, rng, keepGoing: (List<int?> currentTiles) {
 			for (int i = 0; i < currentTiles.length; i++) {
 				if (currentTiles[i] == i) {
 					return true;
@@ -90,18 +90,6 @@ class Puzzle {
 			}
 			return false;
 		});
-
-		// Move hole to bottom right in non-random hole mode
-		if (!randomHole) {
-			while (solution.last != null) {
-				final int holeIndex = solution.indexOf(null);
-				if (canSwapHoleWithDown(holeIndex)) {
-					swapHoleWithDown(holeIndex, solution);
-				} else if (canSwapHoleWithRight(holeIndex)) {
-					swapHoleWithRight(holeIndex, solution);
-				}
-			}
-		}
 
 		final List<int> possibleLocationsSinglePiece = <int>[];
 		for (int i = 0; i < puzzlePieces.length - 1; i++) {
@@ -135,7 +123,6 @@ class Puzzle {
 			numMoves: data[Data.NUM_MOVES.index],
 			numChecks: data[Data.NUM_CHECKS.index],
 			puzzlePieces: List<int?>.from(data[Data.PUZZLE_PIECES.index]),
-			solution: List<int?>.from(data[Data.SOLUTION.index]),
 			possiblePositions: possiblePositions,
 			lookupValues: List<int>.from(data[Data.LOOKUP_VALUES.index]),
 			isBoosted: (data[Data.MAX_CHECKS_DEPRECATED.index] != null && data[Data.MAX_CHECKS_DEPRECATED.index] >= 6) || data[Data.IS_BOOSTED.index] == true,
@@ -149,7 +136,6 @@ class Puzzle {
 		required this.numMoves,
 		required this.numChecks,
 		required this.puzzlePieces,
-		required this.solution,
 		required this.possiblePositions,
 		required this.lookupValues,
 		required this.shareInfo,
@@ -157,7 +143,6 @@ class Puzzle {
 	});
 
 	List<int?> puzzlePieces = <int?>[];
-	List<int?> solution = <int?>[];
 	Map<int, Set<int>> possiblePositions = <int, Set<int>>{};
 	int numMoves = 0;
 	int numChecks = 0;
@@ -173,7 +158,10 @@ class Puzzle {
 
 	StringBuffer shareInfo = StringBuffer();
 
-	bool get solved => puzzlePieces.toString() == solution.toString();
+	bool get solved {
+		debugPrint("Todo: implement solved");
+		return false;
+	}
 
 	final int day;
 
@@ -230,79 +218,6 @@ class Puzzle {
 		}
 	}
 
-	void checkCurrentAnswer() {
-		final Map<int, DIRECTION_HINT> data = <int, DIRECTION_HINT>{};
-
-		numChecks++;
-
-		for (int i = 0; i < puzzlePieces.length; i++) {
-			if (puzzlePieces[i] == null) {
-				continue;
-			}
-			final int currentIndex = puzzlePieces.indexOf(puzzlePieces[i]);
-			final int correctIndex = solution.indexOf(puzzlePieces[i]);
-			final bool correctRow = sameRow(currentIndex, correctIndex);
-			final bool correctColumn = sameColumn(currentIndex, correctIndex);
-
-			if (correctColumn && correctRow) {
-				data[puzzlePieces[i]!] = DIRECTION_HINT.BOTH;
-				possiblePositions[puzzlePieces[i]!]!.removeWhere((int tile) {
-					return tile != i;
-				});
-			} else if (correctColumn || correctRow) {
-				data[puzzlePieces[i]!] = DIRECTION_HINT.ROW_OR_COLUMN;
-				possiblePositions[puzzlePieces[i]!]!.remove(i);
-				possiblePositions[puzzlePieces[i]!]!.removeWhere((int tile) {
-					return !(sameColumn(tile, i) || sameRow(tile, i));
-				});
-			} else {
-				possiblePositions[puzzlePieces[i]!]!.removeWhere((int tile) {
-					return sameRow(tile, i) || sameColumn(tile, i);
-				});
-			}
-		}
-
-		// Sanity check tiles
-		for (int i = 0; i < puzzlePieces.length; i++) {
-			final int? puzzlePiece = puzzlePieces[i];
-			if (puzzlePiece == null) {
-				continue;
-			}
-			final int solutionLocation = solution.indexOf(puzzlePiece);
-			if (!possiblePositions[puzzlePiece]!.contains(solutionLocation)) {
-				crashlyticsRecordError("Missing own tile! Tile: $puzzlePiece, Solution location: $solutionLocation", StackTrace.current);
-				possiblePositions[puzzlePiece]!.add(solutionLocation);
-			}
-		}
-
-		bool removeAlreadySolvedTiles() {
-
-			bool didSomething = false;
-
-			// Remove all tiles that are already a solution for another tile
-			for (final MapEntry<int, Set<int>> solvedPiece in possiblePositions.entries) {
-				if (solvedPiece.value.length == 1) {
-					final int solvedPieceTile = solvedPiece.value.first;
-					for (final MapEntry<int, Set<int>> otherPiece in possiblePositions.entries) {
-						if (otherPiece.key != solvedPiece.key && otherPiece.value.contains(solvedPieceTile)) {
-							didSomething = true;
-							otherPiece.value.remove(solvedPieceTile);
-						}
-					}
-				}
-			}
-			return didSomething;
-		}
-
-		for (int i = 0; i < 16; i++) {
-			if (!removeAlreadySolvedTiles()) {
-				break;
-			}
-		}
-
-		tilesStateGroup.notifyAll(data);
-	}
-
 	int getValue(int index) {
 		return lookupValues[index];
 	}
@@ -326,7 +241,6 @@ class Puzzle {
 	Map<int, dynamic> toMap() {
 		return <int, dynamic> {
 			Data.PUZZLE_PIECES.index : puzzlePieces,
-			Data.SOLUTION.index : solution,
 			Data.POSSIBLE_POSITIONS.index : mapSetToMapList(possiblePositions),
 			Data.NUM_MOVES.index : numMoves,
 			Data.NUM_CHECKS.index : numChecks,
@@ -378,7 +292,6 @@ Map<int, List<int>> mapSetToMapList(Map<int, Set<int>> data) {
 
 enum Data {
 	PUZZLE_PIECES,
-	SOLUTION,
 	POSSIBLE_POSITIONS,
 	NUM_MOVES,
 	NUM_CHECKS,

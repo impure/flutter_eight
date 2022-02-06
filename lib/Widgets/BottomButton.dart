@@ -36,7 +36,6 @@ class BottomButtonState extends SyncState<void, BottomButton> {
 						.day, freePlay: true);
 				statDisplayStateGroup.notifyAll();
 			} else if (enabled) {
-				puzzle.checkCurrentAnswer();
 				statDisplayStateGroup.notifyAll();
 			} else {
 				Fluttertoast.showToast(msg: "Move empty space to bottom right.");
