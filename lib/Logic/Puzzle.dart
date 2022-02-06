@@ -275,11 +275,8 @@ class Puzzle {
 		tilesStateGroup.notifyAll(data);
 	}
 
-	String getDisplayString(int index) {
-
-		return lookupValues[index].toString();
-		// Note: have to run in web renderer (flutter run -d chrome --web-renderer html) otherwise characters can't be found
-		//const List<String> lookupList = <String>["ᚠ", "ᚢ", "ᚦ", "ᚨ", "ᚱ", "ᛋ", "ᚷ", "ᚹ", "ᚻ", "ᚾ", "ᛒ", "ᛏ", "ᛇ", "ᛈ", "ᛉ"];
+	int getValue(int index) {
+		return lookupValues[index];
 	}
 
 	void trySwapHoleWithLeft() {
