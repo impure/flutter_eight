@@ -40,7 +40,7 @@ dependencies:
   tools:
     git:
       url: https://gitlab.com/azuredown/flutter-tools.git
-      ref: no_ads
+      ref: no_ads_firebase
   state_groups: ^0.1.0
   tuple: any
   fluttertoast: ^8.0.0
