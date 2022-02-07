@@ -51,14 +51,8 @@ class HomePageState extends State<HomePage> {
 
 		return Scaffold(
 			body: SafeArea(
-				child: Row(
-					mainAxisAlignment: MainAxisAlignment.center,
-					children: <Widget>[
-						Column(
-							mainAxisAlignment: MainAxisAlignment.center,
-							children: <Widget>[  gameBoard(gridSize) ],
-						),
-					],
+				child: Center(
+					child: gameBoard(gridSize),
 				),
 			)
 		);
@@ -82,8 +76,10 @@ class HomePageState extends State<HomePage> {
 			),
 			child: Column(
 				crossAxisAlignment: CrossAxisAlignment.start,
+				mainAxisSize: MainAxisSize.min,
 				children: <Widget>[
 					Row(
+						mainAxisSize: MainAxisSize.min,
 						crossAxisAlignment: CrossAxisAlignment.end,
 						children: <Widget>[
 							Column(
@@ -92,6 +88,7 @@ class HomePageState extends State<HomePage> {
 										height: gridSize * 0.33,
 										width: gridSize,
 										child: Row(
+											mainAxisSize: MainAxisSize.min,
 											mainAxisAlignment: MainAxisAlignment.center,
 											children: <Widget>[
 												const AutoSizeText("F8", style: TextStyle(fontSize: 60, fontWeight: FontWeight.bold, letterSpacing: 2)),
@@ -159,6 +156,7 @@ class HomePageState extends State<HomePage> {
 								],
 							),
 							Column(
+								mainAxisSize: MainAxisSize.min,
 								children: <Widget>[
 									Counter(
 										gridSize / 3,
@@ -181,6 +179,7 @@ class HomePageState extends State<HomePage> {
 						],
 					),
 					Row(
+						mainAxisSize: MainAxisSize.min,
 						children: <Widget>[
 							Counter(
 								gridSize / 3,
