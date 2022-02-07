@@ -63,17 +63,17 @@ class HomePageState extends State<HomePage> {
 
 	Widget gameBoard(double gridSize) {
 		return Container(
-			padding: const EdgeInsets.only(left: 50, top: 25, bottom: 25, right: 25),
-			decoration: const BoxDecoration(
-				borderRadius: BorderRadius.all(Radius.circular(100)),
-				image: DecorationImage(
+			padding: EdgeInsets.only(left: gridSize * 0.1, top: gridSize * 0.05, bottom: gridSize * 0.05, right: gridSize * 0.05),
+			decoration: BoxDecoration(
+				borderRadius: BorderRadius.all(Radius.circular(gridSize / 5)),
+				image: const DecorationImage(
 					fit: BoxFit.cover, // I don't know what this does but we need it
 					image: AssetImage("assets/board.png")
 				),
 				boxShadow: <BoxShadow>[
 					BoxShadow(
 						color: Colors.black38,
-						blurRadius: 25,
+						blurRadius: gridSize * 0.05,
 					),
 				],
 			),
