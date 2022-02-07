@@ -85,7 +85,13 @@ class TileState extends SyncState<Map<int, DIRECTION_HINT>, Tile> with SingleTic
 							elevation: 3,
 							child: InkWell(
 								hoverColor: Colors.black12,
-								child: SizedBox(
+								child: Container(
+									decoration: const BoxDecoration(
+										image: DecorationImage(
+											fit: BoxFit.cover, // I don't know what this does but we need it
+											image: AssetImage("assets/tile1.png")
+										),
+									),
 									height: widget.height,
 									width: widget.width,
 									child: Center(
