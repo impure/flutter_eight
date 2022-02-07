@@ -4,7 +4,6 @@ import 'dart:ui';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eight/Data/Data.dart';
-import 'package:flutter_eight/Dialogs/SettingsDialog.dart';
 import 'package:flutter_eight/Dialogs/StatsDialog.dart';
 import 'package:flutter_eight/Logic/Puzzle.dart';
 import 'package:state_groups/state_groups.dart';
@@ -94,7 +93,7 @@ class TileState extends SyncState<Map<int, DIRECTION_HINT>, Tile> with SingleTic
 											padding: EdgeInsets.symmetric(vertical: widget.width * 0.2, horizontal: widget.height * 0.2),
 											child: AutoSizeText(
 												widget.num.toString(),
-												style: TextStyle(
+												style: const TextStyle(
 													//color: Colors.white,
 													fontSize: 50,
 													fontWeight: FontWeight.w900,

@@ -1,8 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_eight/Data/Data.dart';
 import 'package:flutter_eight/Logic/StatsLogic.dart';
-import 'package:flutter_eight/Widgets/Tile.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tools/Startup.dart';
 

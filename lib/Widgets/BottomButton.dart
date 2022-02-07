@@ -1,9 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_eight/Data/Data.dart';
-import 'package:flutter_eight/Dialogs/SettingsDialog.dart';
 import 'package:flutter_eight/Logic/Puzzle.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:state_groups/state_groups.dart';
 
 class BottomButton extends StatefulWidget {

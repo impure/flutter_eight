@@ -146,19 +146,16 @@ class HomePageState extends State<HomePage> {
 						children: <Widget>[
 							Container(
 								decoration: BoxDecoration(
-									color: Theme.of(context).canvasColor.withOpacity(0.9),
+									color: Colors.orange.withOpacity(0.2),
 									boxShadow: const <BoxShadow>[
 										BoxShadow(
 											color: Colors.black54,
 											blurRadius: 10,
+											blurStyle: BlurStyle.inner,
 										)
 									],
 								),
-								child: Stack(
-									children: <Widget>[
-										BoardDisplay(gridSize),
-									],
-								),
+								child: BoardDisplay(gridSize),
 							),
 							Column(
 								children: <Widget>[
@@ -212,7 +209,7 @@ class HomePageState extends State<HomePage> {
 			mainAxisAlignment: MainAxisAlignment.start,
 			mainAxisSize: MainAxisSize.min,
 			children: <Widget>[
-				const Text("FLUTTER 8", style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, letterSpacing: 2)),
+				const Text("F8", style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, letterSpacing: 2)),
 				SizedBox(height: paddingValue),
 				const StatsDisplay(),
 				SizedBox(height: paddingValue),

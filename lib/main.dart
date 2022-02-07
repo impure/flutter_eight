@@ -13,7 +13,6 @@ import 'package:tools/BasicExtensions.dart';
 import 'package:tools/SaveLoadManager.dart';
 import 'package:tools/Startup.dart';
 import 'package:tools/TestUtils.dart';
-import 'package:tools/UpdateRoot.dart';
 import 'package:tuple/tuple.dart';
 
 void main() {

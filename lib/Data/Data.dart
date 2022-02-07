@@ -1,6 +1,4 @@
 
-import 'package:flutter/material.dart';
-import 'package:flutter_eight/Dialogs/SettingsDialog.dart';
 import 'package:flutter_eight/Logic/Puzzle.dart';
 import 'package:flutter_eight/Widgets/Counter.dart';
 import 'package:state_groups/state_groups.dart';

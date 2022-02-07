@@ -6,15 +6,12 @@ import 'package:binary_codec/binary_codec.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_eight/Data/Data.dart';
-import 'package:flutter_eight/Dialogs/SettingsDialog.dart';
 import 'package:flutter_eight/Dialogs/StatsDialog.dart';
 import 'package:flutter_eight/Logic/PuzzleFunctions.dart';
-import 'package:flutter_eight/Logic/StatsLogic.dart';
 import 'package:flutter_eight/Widgets/Counter.dart';
 import 'package:flutter_eight/Widgets/Tile.dart';
 import 'package:tools/SaveLoadManager.dart';
 import 'package:tools/Startup.dart';
-import 'package:tools/TestUtils.dart';
 import 'package:tuple/tuple.dart';
 
 enum DIRECTION_HINT {
