@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_eight/Data/Data.dart';
 import 'package:flutter_eight/Logic/Puzzle.dart';
 import 'package:flutter_eight/Logic/StatsLogic.dart';
-import 'package:flutter_eight/Widgets/NextFlurdleTimer.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class StatsDialog extends StatefulWidget {
@@ -22,19 +21,12 @@ class StatsDialogState extends State<StatsDialog> {
 			title: Center(
 				child: Text(puzzle.solved ? "Congratulations!" : "Statistics"),
 			),
-			content: Column(
-				mainAxisSize: MainAxisSize.min,
-				crossAxisAlignment: CrossAxisAlignment.start,
-				children: <Widget>[
-					Text(
-						"Wins: $numWins\n"
-						"Played: $numPlays\n"
-						"Win percentage: $winPercentage%\n"
-						"Current Streak: $currentStreak\n"
-						"Max Streak: $maxStreak\n"
-					),
-					const NextFlurdleTimer(),
-				],
+			content: Text(
+					"Wins: $numWins\n"
+					"Played: $numPlays\n"
+					"Win percentage: $winPercentage%\n"
+					"Current Streak: $currentStreak\n"
+					"Max Streak: $maxStreak\n"
 			),
 			actions: <Widget>[
 				TextButton(
