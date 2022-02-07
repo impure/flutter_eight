@@ -333,13 +333,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.3.1"
-  google_mobile_ads:
-    dependency: transitive
-    description:
-      name: google_mobile_ads
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.1"
   http:
     dependency: transitive
     description:
@@ -692,8 +685,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: master
-      resolved-ref: "15f5b87077c4a99873e6d15cc9bd97908a25de9a"
+      ref: no_ads
+      resolved-ref: deebc841e366d3c7cdae6ca58ba3cad66f1f8ad4
       url: "https://gitlab.com/azuredown/flutter-tools.git"
     source: git
     version: "0.0.1"
@@ -780,7 +773,7 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.10"
+    version: "2.3.11"
   xdg_directories:
     dependency: transitive
     description:

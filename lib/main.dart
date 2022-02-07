@@ -8,7 +8,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_eight/Data/Data.dart';
 import 'package:flutter_eight/HomePage.dart';
 import 'package:flutter_eight/Logic/Puzzle.dart';
-import 'package:tools/AdManager.dart';
 import 'package:tools/BasicExtensions.dart';
 import 'package:tools/SaveLoadManager.dart';
 import 'package:tools/Startup.dart';
@@ -52,8 +51,6 @@ class LoadingPageState extends State<LoadingPage> {
 	Future<void> _initGame() async {
 		try {
 			await mainInit(
-				realAdIDs: <AdType, String> {
-				},
 				appCheckWebToken: null,
 				purchaseUpdateFunction: (_) {},
 			);
