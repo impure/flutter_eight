@@ -90,58 +90,64 @@ class HomePageState extends State<HomePage> {
 									SizedBox(
 										height: gridSize * 0.33,
 										width: gridSize,
-										child: Row(
-											mainAxisSize: MainAxisSize.min,
-											mainAxisAlignment: MainAxisAlignment.center,
-											children: <Widget>[
-												const AutoSizeText("F8", style: TextStyle(fontSize: 60, fontWeight: FontWeight.bold, letterSpacing: 2)),
-												const VerticalDivider(
-													thickness: 10,
-													width: 100,
-													indent: 50,
-													endIndent: 40,
-													color: Colors.white,
-												),
-												Padding(
-													padding: const EdgeInsets.only(top: 10, left: 10),
-													child: IconButton(
-														icon: const Icon(Icons.help_outline),
-														iconSize: 50,
-														tooltip: "Instructions",
-														onPressed: () {
-															displayHelp();
-														},
+										child: SingleChildScrollView(
+											scrollDirection: Axis.horizontal,
+											child: Row(
+												mainAxisSize: MainAxisSize.min,
+												mainAxisAlignment: MainAxisAlignment.center,
+												children: <Widget>[
+													AutoSizeText("F8", style: TextStyle(fontSize: gridSize * 0.12, fontWeight: FontWeight.bold, letterSpacing: 2)),
+													VerticalDivider(
+														thickness: gridSize / 50,
+														width: gridSize / 5,
+														indent: gridSize * 0.1,
+														endIndent: gridSize * 0.08,
+														color: Colors.white,
 													),
-												),
-												Padding(
-													padding: const EdgeInsets.only(top: 10, left: 10),
-													child: IconButton(
-														icon: const Icon(Icons.restart_alt),
-														iconSize: 50,
-														tooltip: "Restart",
-														onPressed: () {
-															displayHelp();
-														},
+													Padding(
+														padding: EdgeInsets.only(top: gridSize / 50, left: gridSize / 50),
+														child: IconButton(
+															visualDensity: VisualDensity.compact,
+															icon: const Icon(Icons.help_outline),
+															iconSize: gridSize / 10,
+															tooltip: "Instructions",
+															onPressed: () {
+																displayHelp();
+															},
+														),
 													),
-												),
-												Padding(
-													padding: const EdgeInsets.only(top: 10, left: 10),
-													child: IconButton(
-														icon: const Icon(Icons.settings),
-														iconSize: 50,
-														tooltip: "Settings",
-														onPressed: () {
-															showDialog(
-																context: context,
-																builder: (BuildContext context) {
-																	return const SettingsDialog();
-																},
-															);
-														},
+													Padding(
+														padding: EdgeInsets.only(top: gridSize / 50, left: gridSize / 50),
+														child: IconButton(
+															visualDensity: VisualDensity.compact,
+															icon: const Icon(Icons.restart_alt),
+															iconSize: gridSize / 10,
+															tooltip: "Restart",
+															onPressed: () {
+																displayHelp();
+															},
+														),
 													),
-												),
-											],
-										)
+													Padding(
+														padding: EdgeInsets.only(top: gridSize / 50, left: gridSize / 50),
+														child: IconButton(
+															visualDensity: VisualDensity.compact,
+															icon: const Icon(Icons.settings),
+															iconSize: gridSize / 10,
+															tooltip: "Settings",
+															onPressed: () {
+																showDialog(
+																	context: context,
+																	builder: (BuildContext context) {
+																		return const SettingsDialog();
+																	},
+																);
+															},
+														),
+													),
+												],
+											),
+										),
 									),
 									Container(
 										decoration: BoxDecoration(
@@ -204,58 +210,6 @@ class HomePageState extends State<HomePage> {
 					),
 				],
 			),
-		);
-	}
-
-	Widget header(double paddingValue) {
-		return Column(
-			mainAxisAlignment: MainAxisAlignment.start,
-			mainAxisSize: MainAxisSize.min,
-			children: <Widget>[
-				const Text("F8", style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, letterSpacing: 2)),
-				SizedBox(height: paddingValue),
-				const StatsDisplay(),
-				SizedBox(height: paddingValue),
-				Row(
-					mainAxisAlignment: MainAxisAlignment.center,
-					children: <Widget>[
-						IconButton(
-							icon: const Icon(Icons.help_outline),
-							iconSize: 40,
-							tooltip: "Instructions",
-							onPressed: () {
-								displayHelp();
-							},
-						),
-						IconButton(
-							icon: const Icon(Icons.military_tech),
-							tooltip: "Score info",
-							iconSize: 40,
-							onPressed: () {
-								showDialog(
-									context: context,
-									builder: (_) {
-										return const StatsDialog();
-									},
-								);
-							},
-						),
-						IconButton(
-							icon: const Icon(Icons.settings),
-							tooltip: "Settings",
-							iconSize: 40,
-							onPressed: () {
-								showDialog(
-									context: context,
-									builder: (BuildContext context) {
-										return const SettingsDialog();
-									},
-								);
-							},
-						),
-					],
-				),
-			],
 		);
 	}
 
