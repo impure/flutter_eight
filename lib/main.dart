@@ -55,13 +55,7 @@ class LoadingPageState extends State<LoadingPage> {
 				purchaseUpdateFunction: (_) {},
 			);
 
-			final Map<dynamic, dynamic>? data = null;
-
-			if (data == null) {
-				puzzle = Puzzle();
-			} else {
-				puzzle = Puzzle.fromMap(data);
-			}
+			puzzle = Puzzle();
 
 			WidgetsBinding.instance!.addPostFrameCallback((_) {
 				Navigator.pushReplacement(
