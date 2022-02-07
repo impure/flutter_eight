@@ -134,8 +134,14 @@ class Puzzle {
 	StringBuffer shareInfo = StringBuffer();
 
 	bool get solved {
-		debugPrint("Todo: implement solved");
-		return false;
+		final int magicNumber = (puzzlePieces[0] ?? 0) + (puzzlePieces[1] ?? 0) + (puzzlePieces[2] ?? 0);
+		return magicNumber == (puzzlePieces[3] ?? 0) + (puzzlePieces[4] ?? 0) + (puzzlePieces[5] ?? 0) &&
+					magicNumber == (puzzlePieces[6] ?? 0) + (puzzlePieces[7] ?? 0) + (puzzlePieces[8] ?? 0) &&
+					magicNumber == (puzzlePieces[0] ?? 0) + (puzzlePieces[3] ?? 0) + (puzzlePieces[6] ?? 0) &&
+					magicNumber == (puzzlePieces[1] ?? 0) + (puzzlePieces[4] ?? 0) + (puzzlePieces[7] ?? 0) &&
+					magicNumber == (puzzlePieces[2] ?? 0) + (puzzlePieces[5] ?? 0) + (puzzlePieces[8] ?? 0) &&
+					magicNumber == (puzzlePieces[0] ?? 0) + (puzzlePieces[4] ?? 0) + (puzzlePieces[8] ?? 0) &&
+					magicNumber == (puzzlePieces[2] ?? 0) + (puzzlePieces[4] ?? 0) + (puzzlePieces[6] ?? 0);
 	}
 
 	final int day;
