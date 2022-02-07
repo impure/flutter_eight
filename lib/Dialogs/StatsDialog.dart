@@ -1,10 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_eight/Data/Data.dart';
 import 'package:flutter_eight/Logic/Puzzle.dart';
-import 'package:flutter_eight/Logic/StatsLogic.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class StatsDialog extends StatefulWidget {
 	const StatsDialog({Key? key}) : super(key: key);

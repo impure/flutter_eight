@@ -7,11 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_eight/Data/Data.dart';
 import 'package:flutter_eight/Dialogs/InstructionsDialog.dart';
 import 'package:flutter_eight/Dialogs/SettingsDialog.dart';
-import 'package:flutter_eight/Dialogs/StatsDialog.dart';
 import 'package:flutter_eight/Widgets/BoardDisplay.dart';
-import 'package:flutter_eight/Widgets/BottomButton.dart';
 import 'package:flutter_eight/Widgets/Counter.dart';
-import 'package:flutter_eight/Widgets/StatsDisplay.dart';
 import 'package:tools/BasicExtensions.dart';
 import 'package:tools/Startup.dart';
 
