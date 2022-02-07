@@ -1,10 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_eight/Logic/StatsLogic.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tools/Startup.dart';
 
-bool get randomHole => prefs?.getBool("RandomHole") ?? false;
 bool get invertControls => prefs?.getBool("InvertControls") ?? false;
 
 class SettingsDialog extends StatefulWidget {
@@ -33,22 +30,6 @@ class SettingsDialogState extends State<SettingsDialog> {
 							if (value != null) {
 								setState(() {
 									prefs!.setBool("InvertControls", value);
-								});
-							}
-						},
-					),
-					SwitchListTile(
-						title: const Text("Random 'Hole' Location"),
-						subtitle: const Text("Requires 3 Non-Freeplay Wins, Requires Restart"),
-						value: randomHole,
-						onChanged: (bool? value) {
-							if (value != null) {
-								if (numWins < 3) {
-									Fluttertoast.showToast(msg: "Not enough wins!");
-									return;
-								}
-								setState(() {
-									prefs!.setBool("RandomHole", value);
 								});
 							}
 						},
