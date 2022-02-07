@@ -45,7 +45,8 @@ class HomePageState extends State<HomePage> {
 
 		SystemChrome.setSystemUIOverlayStyle(darkModeEnabled ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark);
 
-		final double gridSize = min(500, MediaQuery.of(context).size.width * 3 / 5);
+		final size = MediaQuery.of(context).size;
+		final double gridSize = min(min(500, size.width * 3 / 5), size.height / 2);
 
 		return Scaffold(
 			body: SafeArea(
