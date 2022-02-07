@@ -89,14 +89,12 @@ class HomePageState extends State<HomePage> {
 								children: <Widget>[
 									SizedBox(
 										height: gridSize * 0.33,
-										width: gridSize,
 										child: SingleChildScrollView(
 											scrollDirection: Axis.horizontal,
 											child: Row(
 												mainAxisSize: MainAxisSize.min,
 												mainAxisAlignment: MainAxisAlignment.center,
 												children: <Widget>[
-													const SizedBox(width: 10),
 													AutoSizeText("F8", style: TextStyle(fontSize: gridSize * 0.12, fontWeight: FontWeight.bold, letterSpacing: 2)),
 													VerticalDivider(
 														thickness: gridSize / 50,
