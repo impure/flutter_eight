@@ -83,6 +83,7 @@ class Puzzle {
 		// Also make sure no tiles are currently coloured
 		tilesStateGroup.notifyAll(null);
 		counterGroup.notifyAll(null);
+		boardStateGroup.notifyAll(null);
 	}
 
 	factory Puzzle.fromMap(Map<dynamic, dynamic> data) {

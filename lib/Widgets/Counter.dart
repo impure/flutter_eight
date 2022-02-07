@@ -27,7 +27,7 @@ class CounterState extends SyncState<void, Counter> {
 					height: widget.size * 0.5,
 					width: widget.size * 0.5,
 					decoration: BoxDecoration(
-						color: Colors.brown.withOpacity(0.3),
+						color: Colors.white10,
 						boxShadow: <BoxShadow>[
 							BoxShadow(color: Colors.black54, blurStyle: BlurStyle.outer, blurRadius: 10)
 						]

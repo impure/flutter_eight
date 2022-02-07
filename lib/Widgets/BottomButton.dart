@@ -22,26 +22,13 @@ class BottomButtonState extends SyncState<void, BottomButton> {
 	@override
 	Widget build(BuildContext context) {
 
-		final bool enabled = randomHole || puzzle.puzzlePieces[puzzle.puzzlePieces.length - 1] == null;
-		final bool shuffleButton = puzzle.solved;
-		final String text = shuffleButton ? "Shuffle" : "Check";
-
 		void onTap() {
-			final bool enabled = randomHole || puzzle.puzzlePieces[puzzle.puzzlePieces.length - 1] == null;
-			final bool shuffleButton = puzzle.solved;
-
-			if (shuffleButton) {
-				puzzle = Puzzle();
-				statDisplayStateGroup.notifyAll();
-			} else if (enabled) {
-				statDisplayStateGroup.notifyAll();
-			} else {
-				Fluttertoast.showToast(msg: "Move empty space to bottom right.");
-			}
+			puzzle = Puzzle();
+			statDisplayStateGroup.notifyAll();
 		}
 
 		return Semantics(
-			label: "$text${enabled ? "" : " disabled"}",
+			label: "Shuffle",
 			child: MaterialButton(
 				onPressed: onTap,
 				shape: RoundedRectangleBorder(
@@ -55,12 +42,12 @@ class BottomButtonState extends SyncState<void, BottomButton> {
 					child: Row(
 						mainAxisSize: MainAxisSize.min,
 						mainAxisAlignment: MainAxisAlignment.center,
-						children: <Widget>[
-							const SizedBox(width: 20),
-							const Icon(Icons.grading, size: 30),
-							const SizedBox(width: 5),
-							Text(text, style: const TextStyle(fontSize: 25)),
-							const SizedBox(width: 20),
+						children: const <Widget>[
+							SizedBox(width: 20),
+							Icon(Icons.grading, size: 30),
+							SizedBox(width: 5),
+							Text("Shuffle", style: TextStyle(fontSize: 25)),
+							SizedBox(width: 20),
 						],
 					),
 				),
