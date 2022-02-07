@@ -184,7 +184,7 @@ class Puzzle {
 	}
 
 	void trySwapHoleWithUp() {
-		trySwapHoleWithIndex(puzzlePieces.indexOf(null) - 4);
+		trySwapHoleWithIndex(puzzlePieces.indexOf(null) - PUZZLE_WIDTH);
 	}
 
 	void trySwapHoleWithRight() {
@@ -192,7 +192,7 @@ class Puzzle {
 	}
 
 	void trySwapHoleWithDown() {
-		trySwapHoleWithIndex(puzzlePieces.indexOf(null) + 4);
+		trySwapHoleWithIndex(puzzlePieces.indexOf(null) + PUZZLE_WIDTH);
 	}
 
 	Map<int, dynamic> toMap() {
