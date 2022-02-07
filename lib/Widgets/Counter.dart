@@ -26,7 +26,12 @@ class CounterState extends SyncState<void, Counter> {
 				child: Container(
 					height: widget.size * 0.5,
 					width: widget.size * 0.5,
-					color: Colors.black54,
+					decoration: BoxDecoration(
+						color: Colors.brown.withOpacity(0.3),
+						boxShadow: <BoxShadow>[
+							BoxShadow(color: Colors.black54, blurStyle: BlurStyle.outer, blurRadius: 10)
+						]
+					),
 					child: Center(
 						child: Text(widget.numberGenerator().toString())
 					),

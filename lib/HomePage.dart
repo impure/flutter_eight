@@ -124,72 +124,88 @@ class HomePageState extends State<HomePage> {
 	}
 
 	Widget gameBoard(double gridSize) {
-		return Column(
-			crossAxisAlignment: CrossAxisAlignment.start,
-			children: <Widget>[
-				Row(
-					crossAxisAlignment: CrossAxisAlignment.end,
-					children: <Widget>[
-						Container(
-							decoration: BoxDecoration(
-								color: Theme.of(context).canvasColor.withOpacity(0.9),
-								boxShadow: const <BoxShadow>[
-									BoxShadow(
-										color: Colors.black54,
-										blurRadius: 10,
-									)
-								],
+		return Container(
+			padding: const EdgeInsets.only(left: 50, top: 25, bottom: 25, right: 25),
+			decoration: const BoxDecoration(
+				borderRadius: BorderRadius.all(Radius.circular(100)),
+				image: DecorationImage(
+					fit: BoxFit.cover, // I don't know what this does but we need it
+					image: AssetImage("assets/board.png")
+				),
+				boxShadow: <BoxShadow>[
+					BoxShadow(
+						color: Colors.black38,
+						blurRadius: 25,
+					),
+				],
+			),
+			child: Column(
+				crossAxisAlignment: CrossAxisAlignment.start,
+				children: <Widget>[
+					Row(
+						crossAxisAlignment: CrossAxisAlignment.end,
+						children: <Widget>[
+							Container(
+								decoration: BoxDecoration(
+									color: Theme.of(context).canvasColor.withOpacity(0.9),
+									boxShadow: const <BoxShadow>[
+										BoxShadow(
+											color: Colors.black54,
+											blurRadius: 10,
+										)
+									],
+								),
+								child: Stack(
+									children: <Widget>[
+										HighlightBackground(gridSize),
+										BoardDisplay(gridSize),
+									],
+								),
 							),
-							child: Stack(
+							Column(
 								children: <Widget>[
-									HighlightBackground(gridSize),
-									BoardDisplay(gridSize),
+									Counter(
+										gridSize / 3,
+										() => (puzzle.puzzlePieces[6] ?? 0) + (puzzle.puzzlePieces[4] ?? 0) + (puzzle.puzzlePieces[2] ?? 0),
+									),
+									Counter(
+										gridSize / 3,
+										() => (puzzle.puzzlePieces[0] ?? 0) + (puzzle.puzzlePieces[1] ?? 0) + (puzzle.puzzlePieces[2] ?? 0),
+									),
+									Counter(
+										gridSize / 3,
+										() => (puzzle.puzzlePieces[3] ?? 0) + (puzzle.puzzlePieces[4] ?? 0) + (puzzle.puzzlePieces[5] ?? 0),
+									),
+									Counter(
+										gridSize / 3,
+										() => (puzzle.puzzlePieces[6] ?? 0) + (puzzle.puzzlePieces[7] ?? 0) + (puzzle.puzzlePieces[8] ?? 0),
+									),
 								],
 							),
-						),
-						Column(
-							children: <Widget>[
-								Counter(
-									gridSize / 3,
-									() => (puzzle.puzzlePieces[6] ?? 0) + (puzzle.puzzlePieces[4] ?? 0) + (puzzle.puzzlePieces[2] ?? 0),
-								),
-								Counter(
-									gridSize / 3,
-									() => (puzzle.puzzlePieces[0] ?? 0) + (puzzle.puzzlePieces[1] ?? 0) + (puzzle.puzzlePieces[2] ?? 0),
-								),
-								Counter(
-									gridSize / 3,
-									() => (puzzle.puzzlePieces[3] ?? 0) + (puzzle.puzzlePieces[4] ?? 0) + (puzzle.puzzlePieces[5] ?? 0),
-								),
-								Counter(
-									gridSize / 3,
-									() => (puzzle.puzzlePieces[6] ?? 0) + (puzzle.puzzlePieces[7] ?? 0) + (puzzle.puzzlePieces[8] ?? 0),
-								),
-							],
-						),
-					],
-				),
-				Row(
-					children: <Widget>[
-						Counter(
-							gridSize / 3,
-							() => (puzzle.puzzlePieces[0] ?? 0) + (puzzle.puzzlePieces[3] ?? 0) + (puzzle.puzzlePieces[6] ?? 0),
-						),
-						Counter(
-							gridSize / 3,
-							() => (puzzle.puzzlePieces[1] ?? 0) + (puzzle.puzzlePieces[4] ?? 0) + (puzzle.puzzlePieces[7] ?? 0),
-						),
-						Counter(
-							gridSize / 3,
-							() => (puzzle.puzzlePieces[2] ?? 0) + (puzzle.puzzlePieces[5] ?? 0) + (puzzle.puzzlePieces[8] ?? 0),
-						),
-						Counter(
-							gridSize / 3,
-							() => (puzzle.puzzlePieces[0] ?? 0) + (puzzle.puzzlePieces[4] ?? 0) + (puzzle.puzzlePieces[8] ?? 0),
-						),
-					],
-				),
-			],
+						],
+					),
+					Row(
+						children: <Widget>[
+							Counter(
+								gridSize / 3,
+								() => (puzzle.puzzlePieces[0] ?? 0) + (puzzle.puzzlePieces[3] ?? 0) + (puzzle.puzzlePieces[6] ?? 0),
+							),
+							Counter(
+								gridSize / 3,
+								() => (puzzle.puzzlePieces[1] ?? 0) + (puzzle.puzzlePieces[4] ?? 0) + (puzzle.puzzlePieces[7] ?? 0),
+							),
+							Counter(
+								gridSize / 3,
+								() => (puzzle.puzzlePieces[2] ?? 0) + (puzzle.puzzlePieces[5] ?? 0) + (puzzle.puzzlePieces[8] ?? 0),
+							),
+							Counter(
+								gridSize / 3,
+								() => (puzzle.puzzlePieces[0] ?? 0) + (puzzle.puzzlePieces[4] ?? 0) + (puzzle.puzzlePieces[8] ?? 0),
+							),
+						],
+					),
+				],
+			),
 		);
 	}
 
