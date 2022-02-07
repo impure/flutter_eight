@@ -167,18 +167,22 @@ class HomePageState extends State<HomePage> {
 									Counter(
 										gridSize / 3,
 										() => (puzzle.puzzlePieces[6] ?? 0) + (puzzle.puzzlePieces[4] ?? 0) + (puzzle.puzzlePieces[2] ?? 0),
+										const AssetImage("assets/counter1.png"),
 									),
 									Counter(
 										gridSize / 3,
 										() => (puzzle.puzzlePieces[0] ?? 0) + (puzzle.puzzlePieces[1] ?? 0) + (puzzle.puzzlePieces[2] ?? 0),
+										const AssetImage("assets/counter2.png"),
 									),
 									Counter(
 										gridSize / 3,
 										() => (puzzle.puzzlePieces[3] ?? 0) + (puzzle.puzzlePieces[4] ?? 0) + (puzzle.puzzlePieces[5] ?? 0),
+										const AssetImage("assets/counter3.png"),
 									),
 									Counter(
 										gridSize / 3,
 										() => (puzzle.puzzlePieces[6] ?? 0) + (puzzle.puzzlePieces[7] ?? 0) + (puzzle.puzzlePieces[8] ?? 0),
+										const AssetImage("assets/counter4.png"),
 									),
 								],
 							),
@@ -190,18 +194,22 @@ class HomePageState extends State<HomePage> {
 							Counter(
 								gridSize / 3,
 								() => (puzzle.puzzlePieces[0] ?? 0) + (puzzle.puzzlePieces[3] ?? 0) + (puzzle.puzzlePieces[6] ?? 0),
+								const AssetImage("assets/counter2.png"),
 							),
 							Counter(
 								gridSize / 3,
 								() => (puzzle.puzzlePieces[1] ?? 0) + (puzzle.puzzlePieces[4] ?? 0) + (puzzle.puzzlePieces[7] ?? 0),
+								const AssetImage("assets/counter3.png"),
 							),
 							Counter(
 								gridSize / 3,
 								() => (puzzle.puzzlePieces[2] ?? 0) + (puzzle.puzzlePieces[5] ?? 0) + (puzzle.puzzlePieces[8] ?? 0),
+								const AssetImage("assets/counter4.png"),
 							),
 							Counter(
 								gridSize / 3,
 								() => (puzzle.puzzlePieces[0] ?? 0) + (puzzle.puzzlePieces[4] ?? 0) + (puzzle.puzzlePieces[8] ?? 0),
+								const AssetImage("assets/counter1.png"),
 							),
 						],
 					),

@@ -6,10 +6,11 @@ import 'package:state_groups/state_groups.dart';
 StateGroup<void> counterGroup = StateGroup<void>();
 
 class Counter extends StatefulWidget {
-	const Counter(this.size, this.numberGenerator, {Key? key}) : super(key: key);
+	const Counter(this.size, this.numberGenerator, this.image, {Key? key}) : super(key: key);
 
 	final double size;
 	final int Function() numberGenerator;
+	final AssetImage image;
 
 	@override
 	CounterState createState() => CounterState();
@@ -31,7 +32,7 @@ class CounterState extends SyncState<void, Counter> {
 						image: DecorationImage(
 							colorFilter: ColorFilter.mode(Colors.brown.withOpacity(0.1), BlendMode.difference),
 							fit: BoxFit.cover, // I don't know what this does but we need it
-							image: const AssetImage("assets/counter1.png")
+							image: widget.image,
 						),
 						color: Colors.white10,
 						boxShadow: const <BoxShadow>[

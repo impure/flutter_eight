@@ -79,6 +79,9 @@ flutter:
     - assets/board.png
     - assets/tile1.png
     - assets/counter1.png
+    - assets/counter2.png
+    - assets/counter3.png
+    - assets/counter4.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
