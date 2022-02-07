@@ -47,79 +47,20 @@ class HomePageState extends State<HomePage> {
 
 		final MediaQueryData data = MediaQuery.of(context);
 
+		final double gridSize = min(500, MediaQuery.of(context).size.width * 0.75);
+
 		return Scaffold(
 			body: SafeArea(
-				child: /* data.size.height < 850 && */ data.size.width > data.size.height && data.size.width > 1200 ? buildPortrait(darkModeEnabled) : buildLandScape(darkModeEnabled),
-			)
-		);
-	}
-
-	Widget buildLandScape(bool darkModeEnabled) {
-
-		final double gridSize = min(500, MediaQuery.of(context).size.width * 0.75);
-		final double paddingValue = min(20, MediaQuery.of(context).size.height * 0.02);
-
-		return Column(
-			children: <Widget>[
-				Flexible(
-					flex: 2,
-					child: Center(
-						child: Align(
-							alignment: const Alignment(0.5, 0.25),
-							child: header(paddingValue),
-						),
-					),
-				),
-				gameBoard(gridSize),
-				Flexible(
-					flex: 1,
-					child: Center(
-						child: BottomButton(gridSize * (1.5 / 4)),
-					),
-				),
-			],
-		);
-	}
-
-	Widget buildPortrait(bool darkModeEnabled) {
-
-		final double gridSize = min(500, MediaQuery.of(context).size.width * 0.75);
-		final double paddingValue = min(20, MediaQuery.of(context).size.height * 0.02);
-
-		return Row(
-			children: <Widget>[
-				const Flexible(
-					flex: 3,
-					fit: FlexFit.tight,
-					child: SizedBox(),
-				),
-				Column(
+				child: Row(
 					mainAxisAlignment: MainAxisAlignment.center,
 					children: <Widget>[
-						header(paddingValue),
-						const SizedBox(height: 25),
-						Transform.scale(
-							scale: 0.9,
-							child: BottomButton(gridSize * (1.5 / 4)),
+						Column(
+							mainAxisAlignment: MainAxisAlignment.center,
+							children: <Widget>[  gameBoard(gridSize) ],
 						),
-						const SizedBox(height: 20),
 					],
 				),
-				const Flexible(
-					flex: 3,
-					fit: FlexFit.tight,
-					child: SizedBox(),
-				),
-				Column(
-					mainAxisSize: MainAxisSize.min,
-					children: <Widget>[ gameBoard(gridSize) ],
-				),
-				const Flexible(
-					flex: 2,
-					fit: FlexFit.tight,
-					child: SizedBox(),
-				),
-			],
+			)
 		);
 	}
 
