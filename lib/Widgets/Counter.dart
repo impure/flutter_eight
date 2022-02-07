@@ -39,7 +39,11 @@ class CounterState extends SyncState<void, Counter> {
 						]
 					),
 					child: Center(
-						child: AutoSizeText(widget.numberGenerator().toString(), style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w700))
+						child: FractionallySizedBox(
+							heightFactor: 0.5,
+							widthFactor: 0.5,
+							child: AutoSizeText(widget.numberGenerator().toString(), style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w700)),
+						)
 					),
 				),
 			),
