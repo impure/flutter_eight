@@ -31,9 +31,7 @@ class BottomButtonState extends SyncState<void, BottomButton> {
 			final bool shuffleButton = puzzle.solved;
 
 			if (shuffleButton) {
-				puzzle = Puzzle(day: DateTime
-						.now()
-						.day, freePlay: true);
+				puzzle = Puzzle();
 				statDisplayStateGroup.notifyAll();
 			} else if (enabled) {
 				statDisplayStateGroup.notifyAll();

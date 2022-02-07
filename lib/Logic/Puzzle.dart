@@ -58,23 +58,12 @@ class Puzzle {
 
 	// Resets everything and shuffles the tiles with the following algorithm:
 	// start sorted and then apply random shuffles
-	Puzzle({required this.day, required this.freePlay}) {
+	Puzzle() {
 		numMoves = 0;
 		numChecks = 0;
 		shareInfo.clear();
 
-		final bool alreadyWon = startGame();
-		// Web does not support saving so we still have to do this on web
-		if (kIsWeb && alreadyWon) {
-			freePlay = true;
-		}
-
-		int getDayID() {
-			final DateTime now = DateTime.now();
-			return now.year * 500 + now.month * 40 + now.day;
-		}
-
-		final Random rng = Random(freePlay ? null : getDayID());
+		final Random rng = Random();
 
 		final List<int?> possibleSolution = magicSquares[rng.nextInt(magicSquares.length)];
 		puzzlePieces = possibleSolution.toList();
@@ -99,8 +88,6 @@ class Puzzle {
 	factory Puzzle.fromMap(Map<dynamic, dynamic> data) {
 
 		return Puzzle._(
-			day: data[Data.DAY.index],
-			freePlay: false,
 			numMoves: data[Data.NUM_MOVES.index],
 			numChecks: data[Data.NUM_CHECKS.index],
 			puzzlePieces: List<int?>.from(data[Data.PUZZLE_PIECES.index]),
@@ -110,8 +97,6 @@ class Puzzle {
 	}
 
 	Puzzle._({
-		required this.day,
-		required this.freePlay,
 		required this.numMoves,
 		required this.numChecks,
 		required this.puzzlePieces,
@@ -122,7 +107,6 @@ class Puzzle {
 	List<int?> puzzlePieces = <int?>[];
 	int numMoves = 0;
 	int numChecks = 0;
-	bool freePlay;
 	bool isBoosted = false;
 
 	// Schedule a save in the future and if no one overwrites it save.
@@ -143,8 +127,6 @@ class Puzzle {
 					magicNumber == (puzzlePieces[0] ?? 0) + (puzzlePieces[4] ?? 0) + (puzzlePieces[8] ?? 0) &&
 					magicNumber == (puzzlePieces[2] ?? 0) + (puzzlePieces[4] ?? 0) + (puzzlePieces[6] ?? 0);
 	}
-
-	final int day;
 
 	String getRequirements(Tuple4<int, int, int, int> requirements) {
 		return "${requirements.item1.toString().padLeft(2, "0")} ${requirements.item2.toString().padLeft(2, "0")} ${requirements.item3.toString().padLeft(2, "0")} ${requirements.item4.toString().padLeft(2, "0")}";
@@ -187,9 +169,6 @@ class Puzzle {
 	void checkWin(BuildContext context) {
 		if (solved) {
 			unawaited(save());
-			if (!freePlay) {
-				endGame(true);
-			}
 			showDialog(
 				context: context,
 				builder: (_) {
@@ -221,7 +200,6 @@ class Puzzle {
 			Data.NUM_MOVES.index : numMoves,
 			Data.NUM_CHECKS.index : numChecks,
 			Data.SHARE_INFO.index : shareInfo.toString(),
-			Data.DAY.index : day,
 			Data.IS_BOOSTED.index : isBoosted,
 		};
 	}
@@ -234,9 +212,6 @@ class Puzzle {
 	}
 
 	Future<void> save() async {
-		if (freePlay) {
-			return;
-		}
 		if (kIsWeb) {
 			unawaited(prefs!.setString("Save", binaryCodec.encode(toMap()).toString().
 					replaceAll(" ", "").replaceAll("[", "").replaceAll("]", "")));
@@ -271,6 +246,5 @@ enum Data {
 	NUM_CHECKS,
 	MAX_CHECKS_DEPRECATED,
 	SHARE_INFO,
-	DAY,
 	IS_BOOSTED,
 }

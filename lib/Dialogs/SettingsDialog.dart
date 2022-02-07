@@ -27,7 +27,6 @@ class SettingsDialogState extends State<SettingsDialog> {
 			content: Column(
 				mainAxisSize: MainAxisSize.min,
 				children: <Widget>[
-					Text(puzzle.freePlay ? "Free Play" : "Daily Challenge"),
 					const SizedBox(height: 20),
 					SwitchListTile(
 						title: const Text("Invert Keyboard Controls"),

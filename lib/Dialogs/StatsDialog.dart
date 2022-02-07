@@ -40,14 +40,14 @@ class StatsDialogState extends State<StatsDialog> {
 				TextButton(
 					child: Text("SHUFFLE", style: Theme.of(context).textTheme.bodyText1),
 					onPressed: () {
-						puzzle = Puzzle(day: DateTime.now().day, freePlay: true);
+						puzzle = Puzzle();
 						statDisplayStateGroup.notifyAll();
 						boardStateGroup.notifyAll();
 						bottomButtonStateGroup.notifyAll();
 						Navigator.pop(context);
 					},
 				),
-				(puzzle.solved && !puzzle.freePlay) ? TextButton(
+				puzzle.solved ? TextButton(
 					child: Text("SHARE (CLIPBOARD)", style: Theme.of(context).textTheme.bodyText1),
 					onPressed: () {
 						Clipboard.setData(ClipboardData(text: "I solved the Flurtle for ${todaysDate(DateTime.now())} in ${puzzle.numChecks} checks and ${puzzle.numMoves} moves.${puzzle.shareInfo}"));

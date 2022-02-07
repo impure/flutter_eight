@@ -62,28 +62,10 @@ class LoadingPageState extends State<LoadingPage> {
 			final Map<dynamic, dynamic>? data = null;
 
 			if (data == null) {
-				puzzle = Puzzle(day: DateTime
-						.now()
-						.day, freePlay: false);
+				puzzle = Puzzle();
 			} else {
 				puzzle = Puzzle.fromMap(data);
 			}
-
-			if (puzzle.day != DateTime.now().day) {
-				puzzle = Puzzle(day: DateTime
-						.now()
-						.day, freePlay: false);
-			}
-
-			initTickFunction((_) {
-				final DateTime now = DateTime.now();
-				if (now.day != puzzle.day) {
-					puzzle = Puzzle(day: now.day, freePlay: false);
-					notifyGame();
-				} else {
-					puzzle.checkScheduledSave(now);
-				}
-			}, duration: const Duration(seconds: 1));
 
 			WidgetsBinding.instance!.addPostFrameCallback((_) {
 				Navigator.pushReplacement(
