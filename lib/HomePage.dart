@@ -52,7 +52,12 @@ class HomePageState extends State<HomePage> {
 		return Scaffold(
 			body: SafeArea(
 				child: Center(
-					child: gameBoard(gridSize),
+					child: SingleChildScrollView(
+						scrollDirection: Axis.horizontal,
+						child: SingleChildScrollView(
+							child: gameBoard(gridSize),
+						),
+					)
 				),
 			)
 		);
