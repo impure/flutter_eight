@@ -7,7 +7,6 @@ import 'package:flutter_eight/Data/Data.dart';
 import 'package:flutter_eight/Dialogs/SettingsDialog.dart';
 import 'package:flutter_eight/Dialogs/StatsDialog.dart';
 import 'package:flutter_eight/Logic/Puzzle.dart';
-import 'package:flutter_eight/Widgets/HighlightBackground.dart';
 import 'package:state_groups/state_groups.dart';
 
 StateGroup<Map<int, DIRECTION_HINT>> tilesStateGroup = StateGroup<Map<int, DIRECTION_HINT>>();
@@ -120,7 +119,6 @@ class TileState extends SyncState<Map<int, DIRECTION_HINT>, Tile> with SingleTic
 										);
 										return;
 									}
-									highlightBackgroundGroup.notifyAll(null);
 									puzzle.trySwapHoleWith(widget.num);
 									puzzle.checkWin(context);
 								},

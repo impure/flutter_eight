@@ -10,7 +10,6 @@ import 'package:flutter_eight/Dialogs/StatsDialog.dart';
 import 'package:flutter_eight/Widgets/BoardDisplay.dart';
 import 'package:flutter_eight/Widgets/BottomButton.dart';
 import 'package:flutter_eight/Widgets/Counter.dart';
-import 'package:flutter_eight/Widgets/HighlightBackground.dart';
 import 'package:flutter_eight/Widgets/StatsDisplay.dart';
 import 'package:tools/BasicExtensions.dart';
 import 'package:tools/Startup.dart';
@@ -157,7 +156,6 @@ class HomePageState extends State<HomePage> {
 								),
 								child: Stack(
 									children: <Widget>[
-										HighlightBackground(gridSize),
 										BoardDisplay(gridSize),
 									],
 								),
