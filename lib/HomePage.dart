@@ -1,6 +1,7 @@
 
 import 'dart:math';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_eight/Data/Data.dart';
@@ -144,18 +145,77 @@ class HomePageState extends State<HomePage> {
 					Row(
 						crossAxisAlignment: CrossAxisAlignment.end,
 						children: <Widget>[
-							Container(
-								decoration: BoxDecoration(
-									color: Colors.orange.withOpacity(0.2),
-									boxShadow: const <BoxShadow>[
-										BoxShadow(
-											color: Colors.black54,
-											blurRadius: 10,
-											blurStyle: BlurStyle.inner,
+							Column(
+								children: <Widget>[
+									SizedBox(
+										height: gridSize * 0.33,
+										width: gridSize,
+										child: Row(
+											mainAxisAlignment: MainAxisAlignment.center,
+											children: <Widget>[
+												const AutoSizeText("F8", style: TextStyle(fontSize: 60, fontWeight: FontWeight.bold, letterSpacing: 2)),
+												const VerticalDivider(
+													thickness: 10,
+													width: 100,
+													indent: 50,
+													endIndent: 40,
+													color: Colors.white,
+												),
+												Padding(
+													padding: const EdgeInsets.only(top: 10, left: 10),
+													child: IconButton(
+														icon: const Icon(Icons.help_outline),
+														iconSize: 50,
+														tooltip: "Instructions",
+														onPressed: () {
+															displayHelp();
+														},
+													),
+												),
+												Padding(
+													padding: const EdgeInsets.only(top: 10, left: 10),
+													child: IconButton(
+														icon: const Icon(Icons.restart_alt),
+														iconSize: 50,
+														tooltip: "Restart",
+														onPressed: () {
+															displayHelp();
+														},
+													),
+												),
+												Padding(
+													padding: const EdgeInsets.only(top: 10, left: 10),
+													child: IconButton(
+														icon: const Icon(Icons.settings),
+														iconSize: 50,
+														tooltip: "Settings",
+														onPressed: () {
+															showDialog(
+																context: context,
+																builder: (BuildContext context) {
+																	return const SettingsDialog();
+																},
+															);
+														},
+													),
+												),
+											],
 										)
-									],
-								),
-								child: BoardDisplay(gridSize),
+									),
+									Container(
+										decoration: BoxDecoration(
+											color: Colors.orange.withOpacity(0.2),
+											boxShadow: const <BoxShadow>[
+												BoxShadow(
+													color: Colors.black54,
+													blurRadius: 10,
+													blurStyle: BlurStyle.inner,
+												)
+											],
+										),
+										child: BoardDisplay(gridSize),
+									),
+								],
 							),
 							Column(
 								children: <Widget>[
