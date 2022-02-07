@@ -94,9 +94,10 @@ class HomePageState extends State<HomePage> {
 												mainAxisAlignment: MainAxisAlignment.center,
 												children: <Widget>[
 													AutoSizeText("F8", style: TextStyle(fontSize: gridSize * 0.12, fontWeight: FontWeight.bold, letterSpacing: 2)),
+													SizedBox(width: gridSize / 25),
 													VerticalDivider(
 														thickness: gridSize / 50,
-														width: gridSize / 5,
+														width: gridSize / 10,
 														indent: gridSize * 0.1,
 														endIndent: gridSize * 0.08,
 														color: Colors.white,
