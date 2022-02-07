@@ -96,6 +96,7 @@ class HomePageState extends State<HomePage> {
 												mainAxisSize: MainAxisSize.min,
 												mainAxisAlignment: MainAxisAlignment.center,
 												children: <Widget>[
+													const SizedBox(width: 10),
 													AutoSizeText("F8", style: TextStyle(fontSize: gridSize * 0.12, fontWeight: FontWeight.bold, letterSpacing: 2)),
 													VerticalDivider(
 														thickness: gridSize / 50,
