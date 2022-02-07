@@ -85,11 +85,6 @@ class TileState extends SyncState<Map<int, DIRECTION_HINT>, Tile> with SingleTic
 						width: widget.width,
 						child: Material(
 							elevation: 3,
-							color: hintInfo == DIRECTION_HINT.BOTH
-									?	greenColourBackground
-									: (hintInfo == DIRECTION_HINT.ROW_OR_COLUMN
-									? yellowTileBackground
-									: greyTileBackground),
 							child: InkWell(
 								hoverColor: Colors.black12,
 								child: SizedBox(

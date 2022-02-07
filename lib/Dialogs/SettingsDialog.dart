@@ -6,10 +6,8 @@ import 'package:flutter_eight/Widgets/Tile.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tools/Startup.dart';
 
-bool get thirstyEmojis => prefs?.getBool("ThirstyEmojis") ?? false;
 bool get randomHole => prefs?.getBool("RandomHole") ?? false;
 bool get invertControls => prefs?.getBool("InvertControls") ?? false;
-bool get colourBlindMode => prefs?.getBool("ColourBlindMode") ?? false;
 
 class SettingsDialog extends StatefulWidget {
 	const SettingsDialog({Key? key}) : super(key: key);
@@ -39,35 +37,6 @@ class SettingsDialogState extends State<SettingsDialog> {
 								setState(() {
 									prefs!.setBool("InvertControls", value);
 								});
-							}
-						},
-					),
-					SwitchListTile(
-						title: const Text("Colour Blind Mode"),
-						value: colourBlindMode,
-						onChanged: (bool? value) {
-							if (value != null) {
-								setState(() {
-									prefs!.setBool("ColourBlindMode", value);
-								});
-								boardStateGroup.notifyAll();
-							}
-						},
-					),
-					SwitchListTile(
-						title: const Text("Thirsty Emojis"),
-						subtitle: const Text("Requires 10 Non-Freeplay Wins"),
-						value: thirstyEmojis,
-						onChanged: (bool? value) {
-							if (value != null) {
-								if (numWins < 10) {
-									Fluttertoast.showToast(msg: "Not enough wins!");
-									return;
-								}
-								setState(() {
-									prefs!.setBool("ThirstyEmojis", value);
-								});
-								tilesStateGroup.notifyAll(null);
 							}
 						},
 					),
