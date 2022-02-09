@@ -99,7 +99,7 @@ class HomePageState extends State<HomePage> {
 														thickness: gridSize / 50,
 														width: gridSize / 10,
 														indent: gridSize * 0.1,
-														endIndent: gridSize * 0.08,
+														endIndent: gridSize * 0.087,
 														color: Colors.white,
 													),
 													Padding(

@@ -1,5 +1,6 @@
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:state_groups/state_groups.dart';
 
@@ -39,12 +40,14 @@ class CounterState extends SyncState<void, Counter> {
 							BoxShadow(color: Colors.black54, blurStyle: BlurStyle.outer, blurRadius: 10)
 						]
 					),
-					child: Center(
-						child: FractionallySizedBox(
-							heightFactor: 0.5,
-							widthFactor: 0.5,
+					child: FractionallySizedBox(
+						heightFactor: 0.5,
+						widthFactor: 0.5,
+						child: Padding(
+							// Don't know why but if I don't add padding here on web it doesn't look right
+							padding: kIsWeb ? EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.006) : EdgeInsets.zero,
 							child: AutoSizeText(widget.numberGenerator().toString(), style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w700), textAlign: TextAlign.center),
-						)
+						),
 					),
 				),
 			),
