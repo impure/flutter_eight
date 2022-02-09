@@ -23,6 +23,7 @@ class SettingsDialogState extends State<SettingsDialog> {
 				mainAxisSize: MainAxisSize.min,
 				children: <Widget>[
 					const SizedBox(height: 20),
+					const Text("Version 1.0.1"),
 					SwitchListTile(
 						title: const Text("Invert Keyboard Controls"),
 						value: invertControls,
